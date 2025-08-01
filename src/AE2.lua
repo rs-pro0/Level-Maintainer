@@ -28,9 +28,12 @@ function AE2.getFirstItemInNetwork(name)
 end
 
 function AE2.requestItem(name, threshold, count)
+    logInfo("request start")
     local craftable = AE2.getFirstCraftable(name)
+    logInfo("got craftable")
     if craftable ~= nil then
         local item = craftable.getItemStack()
+        logInfo("got item stack")
         if threshold ~= nil then
             local item_in_network = AE2.getFirstItemInNetwork(name)
             if (item_in_network ~= nil and item_in_network["size"] > threshold) then
