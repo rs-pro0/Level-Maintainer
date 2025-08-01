@@ -4,18 +4,16 @@ local ME = component.me_interface
 local AE2 = {}
 
 function AE2.updateSystemInfo()
-    AE2.craftables = ME.getCraftables()
+    AE2.craftables = {}
+    for _, craftable in ipairs(ME.getCraftables()) do
+        local item = craftable.getItemStack()
+        AE2.craftables[item.label] = craftable
+    end
     AE2.items_in_network = ME.getItemsInNetwork()
 end
 
 function AE2.getFirstCraftable(name)
-    for _, craftable in ipairs(AE2.craftables) do
-        local item = craftable.getItemStack()
-        if item.label == name then
-            return craftable
-        end
-    end
-    return nil
+    return AE2.craftables[name]
 end
 
 function AE2.getFirstItemInNetwork(name)
