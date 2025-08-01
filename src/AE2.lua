@@ -41,7 +41,7 @@ function AE2.requestItem(name, threshold, count)
         if item.label == name then
             local craft = craftable.request(count)
 
-            while craft.isComputing() == true do
+            while false do
                 os.sleep(1)
             end
             if craft.hasFailed() then
